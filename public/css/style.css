@@ -1,0 +1,81 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+header{
+    height: 67px;
+    width: 100%;
+    background-color: #C3CFD9;
+    color:#E8833A;
+    font-size: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.titulo-pagina{
+    height: 110px;
+    width: 100%;
+    font-size: 24px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #293845;
+
+}
+
+.posters{
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.filmes-cartaz img{
+    width: 145px;
+    height: 209px;
+    background-color: #ffffff;
+    padding:8px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 11px;
+}
+
+/* Tela2 */
+
+.horarios{
+    margin-left: 24px;
+}
+
+.dia{
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+.botoes{
+    font-size: 18px;
+    margin-bottom: 22px;
+}
+.botao-hora{
+    width: 83px;
+    height: 43px;
+    margin-right: 8px;
+    background-color: #E8833A;
+    border-radius: 3px;
+    border: none;
+    color: #ffffff
+}
+
+footer{
+    height: 117px;
+    width: 100%;
+    font-size: 26px;
+    display: flex;
+    background-color: #DFE6ED;
+    
+}
+
+.footer-img img{
+    height: 89px;
+    width: 64px;
+}
