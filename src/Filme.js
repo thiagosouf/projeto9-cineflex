@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+
 export default function Filme(props){
+    console.log("passou aqui")
     return(
         <>
-            <img src={props.img} alt={props.nome}></img>
+                <Link to="/horario"><img src={props.img} alt={props.nome}></img></Link>
         </>
     )
 }

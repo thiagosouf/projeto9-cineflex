@@ -1,10 +1,11 @@
 .corpo{
     font-family: 'Roboto', sans-serif;
+    position:absolute;
 }
 
 header{
     height: 67px;
-    width: 100%;
+    width: 100vw;
     background-color: #C3CFD9;
     color:#E8833A;
     font-size: 34px;
@@ -43,7 +44,7 @@ header{
 
 /* Tela2 */
 
-.horarios{
+.horarios-style{
     margin-left: 24px;
 }
 
@@ -133,9 +134,8 @@ input{
     margin-top: 20px;
     color: white;
     font-size: 20px;
-
-
 }
+
 
 /* sucesso */
 .sucesso{
@@ -166,7 +166,7 @@ input{
 
 /* FOOTER */
 .footer{
-    position: absolute;
+    position: relative;
     bottom: 0px;
     height: 117px;
     width: 100vw;

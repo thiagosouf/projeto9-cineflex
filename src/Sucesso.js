@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Sucesso(){
     return(
         <nav className="filmes-sucesso">
@@ -16,7 +18,7 @@ export default function Sucesso(){
                     <p className="conf-info">Nome: João da Silva Sauro CPF: 123.456.789-10</p>
                 </div>
                 <div className="botao">
-                    <button className="botao-grande">Voltar Para Home</button>
+                    <Link to="/"><button className="botao-grande">Voltar Para Home</button></Link>
                 </div>
                 
             </div>

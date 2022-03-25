@@ -1,22 +1,28 @@
-import Filme from "./Filme"
+// import Filme from "./Filme"
+import { Link } from "react-router-dom";
+import {useState, useEffect} from "react"
+import axios from 'axios';
 
 export default function Cartaz(){
-    const filmes = [
-        {id:1, nome:"Batman: O Cavaleiro das Trevas Ressurge", img:"https://m.media-amazon.com/images/M/MV5BZTY5MzJmMTEtM2I2MC00M2UzLTg1NzktOWMzOTVmNzg2MTIxXkEyXkFqcGdeQXVyMTAyOTE2ODg0._V1_.jpg"},
-        {id:2, nome:"Batman", img:"https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg"},
-        {id:3, nome:"Batman: O Cavaleiro das Trevas Ressurge", img:"https://m.media-amazon.com/images/M/MV5BZTY5MzJmMTEtM2I2MC00M2UzLTg1NzktOWMzOTVmNzg2MTIxXkEyXkFqcGdeQXVyMTAyOTE2ODg0._V1_.jpg"},
-        {id:4, nome:"Batman", img:"https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg"},
-        {id:5, nome:"Batman: O Cavaleiro das Trevas Ressurge", img:"https://m.media-amazon.com/images/M/MV5BZTY5MzJmMTEtM2I2MC00M2UzLTg1NzktOWMzOTVmNzg2MTIxXkEyXkFqcGdeQXVyMTAyOTE2ODg0._V1_.jpg"},
-        {id:6, nome:"Batman", img:"https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg"},
-        {id:7, nome:"Batman: O Cavaleiro das Trevas Ressurge", img:"https://m.media-amazon.com/images/M/MV5BZTY5MzJmMTEtM2I2MC00M2UzLTg1NzktOWMzOTVmNzg2MTIxXkEyXkFqcGdeQXVyMTAyOTE2ODg0._V1_.jpg"},
-        {id:8, nome:"Batman", img:"https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg"}
-        
-    ]
+    const [filmes, setFilmes] = useState([]);
+    
+    useEffect(()=>{
+        const promise = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
+        promise.then((response)=> {
+            const {data} = response;
+            console.log(data)
+            setFilmes(data);
+        })
+        promise.catch(err => console.log(err.response));
+    }, []);
 
     return(
         <>
-            {filmes.map((info)=>
-                    <Filme id={info.id} nome={info.nome} img={info.img}/>)}
+            {filmes.map(filme=>{
+                    const {id, title, posterURL} = filme;
+                    return <Link to={`/filme/${id}`}><img src={posterURL} alt={title}></img></Link>
+                   })
+            }
         </>
 
     )
