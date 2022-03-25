@@ -1,6 +1,22 @@
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { useState, useEffect } from "react"
+import axios from "axios";
 
 export default function Assentos() {
+    const { sessaoId } = useParams();
+    const [assentos, setAssentos] = useState({});
+
+    useEffect(() => {
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`);
+        promise.then(response => {
+            const { data } = response;
+            console.log(data);
+            setAssentos(data);
+        })
+        promise.catch(err => console.log(err.response));
+    }, []);
+
+
     let lugares = []
     for (let i = 1; i <= 50; i++) {
         lugares.push(i)
