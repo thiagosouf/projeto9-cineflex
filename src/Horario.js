@@ -26,7 +26,7 @@ export default function Horario() {
                 <div className="horarios-style">
                     {dias.map(dia => <><p className="dia">{dia.weekday}</p><div className="botoes">
                     <Link to={`/sessao/${dia.showtimes[0].id}`}><button className="botao-hora">{dia.showtimes[0].name}</button></Link>
-                    <Link to={`/sessao/${dia.showtimes[0].id}`}><button className="botao-hora">{dia.showtimes[1].name}</button></Link>
+                    <Link to={`/sessao/${dia.showtimes[1].id}`}><button className="botao-hora">{dia.showtimes[1].name}</button></Link>
                     </div></>)}
                 </div>
             </nav>

@@ -1,22 +1,13 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
 import axios from "axios";
-
-function fazerReserva (props, event) {
-    event.preventDefault();
-
-    const requisicao = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
-        ids: props.reservas,
-        name: "Fulano",
-        cpf: "12345678900"
-    });}
-
 
 export default function Assentos() {
     const { sessaoId } = useParams();
     const [assentos, setAssentos] = useState({});
     const [nome, setNome] = useState("");
 	const [cpf, setCpf] = useState("");
+    const navigate = useNavigate();
     let reservas = []
 
     useEffect(() => {
@@ -35,10 +26,30 @@ export default function Assentos() {
     console.log(filme)
     console.log(cadeiras)
 
-    let lugares = []
-    for (let i = 1; i <= 50; i++) {
-        lugares.push(i)
+    function FazerReserva ( event) {
+        event.preventDefault();
+        console.log(`{
+            ids: ${reservas},
+            name: "Fulano",
+            cpf: "12345678900"
+        }`)
+        
+    
+        const requisicao = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+            ids: reservas,
+            name: "Fulano",
+            cpf: "12345678900"
+        });
+        
+        requisicao.then(response => {
+            console.log(response)
+            alert("Foi enviado com sucesso e alegria!");
+            navigate("/sucesso"); // window.href.location = "/"
+          });
+          requisicao.catch(err => alert("deu ruim :("));
     }
+
+
     return dia != null ?(
         <>
         
@@ -46,7 +57,7 @@ export default function Assentos() {
                 <p className="titulo-pagina">Selecione o(s) assento(s)</p>
                 <div className="lugares">
                     {cadeiras.map((lugar) => {
-                        return lugar.isAvailable ?(<Bolinha lugar={lugar.name} reservas={reservas}/>
+                        return lugar.isAvailable ?(<Bolinha lugar={lugar.name} id={lugar.id} reservas={reservas}/>
                             
                         ):(<div className="bolinha amarela">{lugar.name}</div>)
                     })}
@@ -66,7 +77,7 @@ export default function Assentos() {
                     </div>
                 </div>
                 <div >
-                    <form className="formulario" onSubmit={fazerReserva}>
+                    <form className="formulario" onSubmit={FazerReserva}>
                         <label for="nome">Nome do comprador:</label>
                         <input type="text" id="nome" value={nome} onChange={e => setNome(e.target.value)}></input>
                         <label for="cpf">CPF:</label>
@@ -103,14 +114,14 @@ function Bolinha(props){
     return selecionado==="bolinha" ?(
         <>
             <div onClick={()=>{
-                props.reservas.push(props.lugar)
+                props.reservas.push(parseInt(props.id))
                 console.log(props.reservas)
                 setSelecionado("bolinha verde")
                 }} className={selecionado}>{props.lugar}</div>
         </>
     ):(
         <div onClick={()=>{
-            let index = props.reservas.indexOf(props.lugar)
+            let index = props.reservas.indexOf(props.id)
             props.reservas.splice(index,1)
             console.log(props.reservas)
             setSelecionado("bolinha")
