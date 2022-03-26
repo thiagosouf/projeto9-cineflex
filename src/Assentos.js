@@ -5,6 +5,7 @@ import axios from "axios";
 export default function Assentos() {
     const { sessaoId } = useParams();
     const [assentos, setAssentos] = useState({});
+    let reservas = []
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`);
@@ -32,7 +33,11 @@ export default function Assentos() {
             <nav className="filmes-assentos">
                 <p className="titulo-pagina">Selecione o(s) assento(s)</p>
                 <div className="lugares">
-                    {cadeiras.map((lugar) => (<div className="bolinha">{lugar.name}</div>))}
+                    {cadeiras.map((lugar) => {
+                        return lugar.isAvailable ?(<Bolinha lugar={lugar.name} reservas={reservas}/>
+                            
+                        ):(<div className="bolinha amarela">{lugar.name}</div>)
+                    })}
                 </div>
                 <div className="status-lugares">
                     <div className="status-info">
@@ -78,5 +83,25 @@ function Footer(props){
                     <p>{props.diaSemana} - {props.diaData}</p>
                 </div>
             </footer>
+    )
+}
+
+function Bolinha(props){
+    const [selecionado, setSelecionado] = useState("bolinha")
+    return selecionado==="bolinha" ?(
+        <>
+            <div onClick={()=>{
+                props.reservas.push(props.lugar)
+                console.log(props.reservas)
+                setSelecionado("bolinha verde")
+                }} className={selecionado}>{props.lugar}</div>
+        </>
+    ):(
+        <div onClick={()=>{
+            let index = props.reservas.indexOf(props.lugar)
+            props.reservas.splice(index,1)
+            console.log(props.reservas)
+            setSelecionado("bolinha")
+            }} className={selecionado}>{props.lugar}</div>
     )
 }
