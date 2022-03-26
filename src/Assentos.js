@@ -2,9 +2,21 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react"
 import axios from "axios";
 
+function fazerReserva (props, event) {
+    event.preventDefault();
+
+    const requisicao = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
+        ids: props.reservas,
+        name: "Fulano",
+        cpf: "12345678900"
+    });}
+
+
 export default function Assentos() {
     const { sessaoId } = useParams();
     const [assentos, setAssentos] = useState({});
+    const [nome, setNome] = useState("");
+	const [cpf, setCpf] = useState("");
     let reservas = []
 
     useEffect(() => {
@@ -54,12 +66,12 @@ export default function Assentos() {
                     </div>
                 </div>
                 <div >
-                    <form className="formulario">
+                    <form className="formulario" onSubmit={fazerReserva}>
                         <label for="nome">Nome do comprador:</label>
-                        <input type="text" id="nome"></input>
-                        <label for="cpf">Last name:</label>
-                        <input type="text" id="cpf"></input>
-                        <Link to="/sucesso"><button className="botao-grande">Reservar assento(s)</button></Link>
+                        <input type="text" id="nome" value={nome} onChange={e => setNome(e.target.value)}></input>
+                        <label for="cpf">CPF:</label>
+                        <input type="text" id="cpf" value={cpf} onChange={e => setCpf(e.target.value)}></input>
+                        <button type="submit" className="botao-grande">Reservar assento(s)</button>
                     </form>
                 </div>
 
