@@ -45,7 +45,7 @@ export default function Assentos() {
         requisicao.then(response => {
             console.log(response)
             alert("Foi enviado com sucesso e alegria!");
-            navigate("/sucesso",{state: {filme: filme.title, dia: dia.date, hora:assentos.name}}); // window.href.location = "/"
+            navigate("/sucesso",{state: {filme: filme.title, dia: dia.date, hora:assentos.name, assento: lugaresReservados }}); // window.href.location = "/"
           });
           requisicao.catch(err => alert("deu ruim :("));
     }
@@ -116,7 +116,7 @@ function Bolinha(props){
         <>
             <div onClick={()=>{
                 props.reservas.push(parseInt(props.id))
-                props.lugaresReservados.push(props.lugar)
+                props.lugaresReservados.push(`Assento ${props.lugar} `)
                 console.log(props.reservas)
                 console.log(props.lugaresReservados)
                 setSelecionado("bolinha verde")

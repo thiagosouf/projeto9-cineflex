@@ -14,7 +14,7 @@ export default function Sucesso(props){
                 </div>
                 <div className="conf-ingresso">
                     <p className="conf-titulo">Ingressos</p>
-                    <p className="conf-info">Assento 15 Assento 16</p>
+                    <p className="conf-info">{state.assento}</p>
                 </div>
                 <div className="conf-comprador">
                     <p className="conf-titulo">Comprador</p>
