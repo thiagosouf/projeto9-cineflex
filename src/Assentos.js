@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
 import axios from "axios";
+let reservas = []
+let lugaresReservados =[]
 
 export default function Assentos() {
     const { sessaoId } = useParams();
@@ -8,8 +10,7 @@ export default function Assentos() {
     const [nome, setNome] = useState("");
 	const [cpf, setCpf] = useState("");
     const navigate = useNavigate();
-    let reservas = []
-    let lugaresReservados =[]
+    
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`);
@@ -31,21 +32,21 @@ export default function Assentos() {
         event.preventDefault();
         console.log(`{
             ids: ${reservas},
-            name: "Fulano",
-            cpf: "12345678900"
+            name: ${nome},
+            cpf: ${cpf}
         }`)
         
     
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
             ids: reservas,
-            name: "Fulano",
-            cpf: "12345678900"
+            name: nome,
+            cpf: cpf
         });
         
         requisicao.then(response => {
             console.log(response)
             alert("Foi enviado com sucesso e alegria!");
-            navigate("/sucesso",{state: {filme: filme.title, dia: dia.date, hora:assentos.name, assento: lugaresReservados }}); // window.href.location = "/"
+            navigate("/sucesso",{state: {filme: filme.title, dia: dia.date, hora:assentos.name, assento: lugaresReservados, nome:nome, cpf:cpf }}); // window.href.location = "/"
           });
           requisicao.catch(err => alert("deu ruim :("));
     }
@@ -116,7 +117,7 @@ function Bolinha(props){
         <>
             <div onClick={()=>{
                 props.reservas.push(parseInt(props.id))
-                props.lugaresReservados.push(`Assento ${props.lugar} `)
+                props.lugaresReservados.push(`Assento ${props.lugar}`)
                 console.log(props.reservas)
                 console.log(props.lugaresReservados)
                 setSelecionado("bolinha verde")

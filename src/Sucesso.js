@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 export default function Sucesso(props){
     const { state } = useLocation();
+    const assentos = state.assento
     console.log(state)
     return(
         <nav className="filmes-sucesso">
@@ -14,11 +15,11 @@ export default function Sucesso(props){
                 </div>
                 <div className="conf-ingresso">
                     <p className="conf-titulo">Ingressos</p>
-                    <p className="conf-info">{state.assento}</p>
+                    {assentos.map((lugar)=><p className="conf-info">{lugar}</p>)}
                 </div>
                 <div className="conf-comprador">
                     <p className="conf-titulo">Comprador</p>
-                    <p className="conf-info">Nome: João da Silva Sauro CPF: 123.456.789-10</p>
+                    <p className="conf-info">Nome: {state.nome} CPF: {state.cpf}</p>
                 </div>
                 <div className="botao">
                     <Link to="/"><button className="botao-grande">Voltar Para Home</button></Link>
