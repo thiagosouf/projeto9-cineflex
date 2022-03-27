@@ -9,6 +9,7 @@ export default function Assentos() {
 	const [cpf, setCpf] = useState("");
     const navigate = useNavigate();
     let reservas = []
+    let lugaresReservados =[]
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`);
@@ -44,7 +45,7 @@ export default function Assentos() {
         requisicao.then(response => {
             console.log(response)
             alert("Foi enviado com sucesso e alegria!");
-            navigate("/sucesso"); // window.href.location = "/"
+            navigate("/sucesso",{state: {filme: filme.title, dia: dia.date, hora:assentos.name}}); // window.href.location = "/"
           });
           requisicao.catch(err => alert("deu ruim :("));
     }
@@ -57,7 +58,7 @@ export default function Assentos() {
                 <p className="titulo-pagina">Selecione o(s) assento(s)</p>
                 <div className="lugares">
                     {cadeiras.map((lugar) => {
-                        return lugar.isAvailable ?(<Bolinha lugar={lugar.name} id={lugar.id} reservas={reservas}/>
+                        return lugar.isAvailable ?(<Bolinha lugar={lugar.name} id={lugar.id} reservas={reservas} lugaresReservados={lugaresReservados}/>
                             
                         ):(<div className="bolinha amarela">{lugar.name}</div>)
                     })}
@@ -115,7 +116,9 @@ function Bolinha(props){
         <>
             <div onClick={()=>{
                 props.reservas.push(parseInt(props.id))
+                props.lugaresReservados.push(props.lugar)
                 console.log(props.reservas)
+                console.log(props.lugaresReservados)
                 setSelecionado("bolinha verde")
                 }} className={selecionado}>{props.lugar}</div>
         </>
@@ -123,7 +126,9 @@ function Bolinha(props){
         <div onClick={()=>{
             let index = props.reservas.indexOf(props.id)
             props.reservas.splice(index,1)
+            props.lugaresReservados.splice(index,1)
             console.log(props.reservas)
+            console.log(props.lugaresReservados)
             setSelecionado("bolinha")
             }} className={selecionado}>{props.lugar}</div>
     )
