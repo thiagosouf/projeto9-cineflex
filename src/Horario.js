@@ -13,22 +13,19 @@ export default function Horario() {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${filmeId}/showtimes`);
         promise.then(response => {
             const { data } = response;
-            console.log(data);
             setHorario(data);
         })
         promise.catch(err => console.log(err.response));
     }, []);
     let dias = horario.days
-    console.log(dias)
     return dias != null ? (
         <>
-            {console.log("entrou aqui")}
             <nav>
                 <TituloPagina>Selecione o horário</TituloPagina>
                 <HorariosStyle>
                     {dias.map(dia => <><Dia>{dia.weekday}</Dia><Botoes>
-                    <Link to={`/sessao/${dia.showtimes[0].id}`}><BotaoHora>{dia.showtimes[0].name}</BotaoHora></Link>
-                    <Link to={`/sessao/${dia.showtimes[1].id}`}><BotaoHora>{dia.showtimes[1].name}</BotaoHora></Link>
+                    <Link to={`/assentos/${dia.showtimes[0].id}`}><BotaoHora>{dia.showtimes[0].name}</BotaoHora></Link>
+                    <Link to={`/assentos/${dia.showtimes[1].id}`}><BotaoHora>{dia.showtimes[1].name}</BotaoHora></Link>
                     </Botoes></>)}
                 </HorariosStyle>
             </nav>

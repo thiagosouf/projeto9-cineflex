@@ -21,7 +21,6 @@ export default function Assentos() {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessaoId}/seats`);
         promise.then(response => {
             const { data } = response;
-            console.log(data);
             setAssentos(data);
         })
         promise.catch(err => console.log(err.response));
@@ -29,18 +28,9 @@ export default function Assentos() {
     let dia = assentos.day
     let filme = assentos.movie
     let cadeiras = assentos.seats
-    console.log(dia)
-    console.log(filme)
-    console.log(cadeiras)
 
     function FazerReserva ( event) {
-        event.preventDefault();
-        console.log(`{
-            ids: ${reservas},
-            name: ${nome},
-            cpf: ${cpf}
-        }`)
-        
+        event.preventDefault();        
     
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", {
             ids: reservas,
@@ -49,7 +39,6 @@ export default function Assentos() {
         });
         
         requisicao.then(response => {      
-            console.log(response)  
             alert("Sua reserva foi realizada com sucesso!");
             navigate("/sucesso",{state: {filme: filme.title, dia: dia.date, hora:assentos.name, assento: lugaresReservados, nome:nome, cpf:cpf }});
         });
@@ -110,8 +99,6 @@ function Bolinha(props){
             <BolinhaCinza onClick={()=>{
                 props.reservas.push(parseInt(props.id))
                 props.lugaresReservados.push(`Assento ${props.lugar}`)
-                console.log(props.reservas)
-                console.log(props.lugaresReservados)
                 setSelecionado(true)
                 }}>{props.lugar}</BolinhaCinza>
         </>
@@ -120,8 +107,6 @@ function Bolinha(props){
             let index = props.reservas.indexOf(props.id)
             props.reservas.splice(index,1)
             props.lugaresReservados.splice(index,1)
-            console.log(props.reservas)
-            console.log(props.lugaresReservados)
             setSelecionado(false)
             }}>{props.lugar}</BolinhaVerde>
     )

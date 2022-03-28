@@ -5,7 +5,6 @@ import {useLocation } from "react-router-dom";
 export default function Sucesso(props){
     const { state } = useLocation();
     const assentos = state.assento
-    console.log(state)
     return(
         <nav>
             <TituloPaginaSucesso>Pedido feito com sucesso!</TituloPaginaSucesso>

@@ -10,7 +10,6 @@ export default function Cartaz(){
         const promise = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
         promise.then((response)=> {
             const {data} = response;
-            console.log(data)
             setFilmes(data);
         })
         promise.catch(err => console.log(err.response));
@@ -20,7 +19,7 @@ export default function Cartaz(){
         <>
             {filmes.map(filme=>{
                     const {id, title, posterURL} = filme;
-                    return <Link to={`/filme/${id}`}><img src={posterURL} alt={title}></img></Link>
+                    return <Link to={`/sessoes/${id}`}><img src={posterURL} alt={title}></img></Link>
                    })
             }
         </>
