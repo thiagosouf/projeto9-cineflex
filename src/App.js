@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from 'styled-components';
 import Header from "./Header"
 import Nav from "./Nav"
 import React from "react"
@@ -10,7 +11,7 @@ import Sucesso from "./Sucesso"
 export default function App(){
     
     return(
-        <div className="corpo">
+        <Corpo>
             <BrowserRouter>
                 <Header/>
                 <Routes>
@@ -20,6 +21,11 @@ export default function App(){
                     <Route path="/sucesso" element={<Sucesso />}></Route>
                 </Routes>
             </BrowserRouter>            
-        </div>
+        </Corpo>
     )
 }
+
+const Corpo = styled.div`
+    font-family: 'Roboto', sans-serif;
+    position:absolute;
+`

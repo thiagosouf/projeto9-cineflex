@@ -19,7 +19,8 @@ export default function Sucesso(props){
                 </div>
                 <div className="conf-comprador">
                     <p className="conf-titulo">Comprador</p>
-                    <p className="conf-info">Nome: {state.nome} CPF: {state.cpf}</p>
+                    <p className="conf-info">Nome: {state.nome}</p>
+                    <p className="conf-info">CPF: {state.cpf}</p>
                 </div>
                 <div className="botao">
                     <Link to="/"><button className="botao-grande">Voltar Para Home</button></Link>

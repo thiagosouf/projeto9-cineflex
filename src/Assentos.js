@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react"
+import styled from 'styled-components';
 import axios from "axios";
 let reservas = []
 let lugaresReservados =[]
@@ -55,8 +56,8 @@ export default function Assentos() {
     return dia != null ?(
         <>
         
-            <nav className="filmes-assentos">
-                <p className="titulo-pagina">Selecione o(s) assento(s)</p>
+            <nav>
+                <TituloPagina>Selecione o(s) assento(s)</TituloPagina>
                 <div className="lugares">
                     {cadeiras.map((lugar) => {
                         return lugar.isAvailable ?(<Bolinha lugar={lugar.name} id={lugar.id} reservas={reservas} lugaresReservados={lugaresReservados}/>
@@ -134,3 +135,14 @@ function Bolinha(props){
             }} className={selecionado}>{props.lugar}</div>
     )
 }
+
+const TituloPagina = styled.p`
+    height: 110px;
+    width: 100%;
+    font-size: 24px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #293845;
+`
