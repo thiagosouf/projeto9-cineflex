@@ -1,13 +1,13 @@
 import Cartaz from "./Cartaz"
 import styled from 'styled-components';
-
 export default function Nav(){
+    
     return(
         <FilmesCartaz>
             <TituloPagina>Selecione o filme</TituloPagina>
-            <div className="posters">
+            <Posters>
                 <Cartaz />
-            </div>
+            </Posters>
         </FilmesCartaz>
         
     )
@@ -25,6 +25,7 @@ img{
 }
 `
 const TituloPagina = styled.p`
+    margin-top: 68px;
     height: 110px;
     width: 100%;
     font-size: 24px;
@@ -33,4 +34,12 @@ const TituloPagina = styled.p`
     justify-content: center;
     background-color: #ffffff;
     color: #293845;
+`
+
+const Posters = styled.div`
+    margin-bottom: 68px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 `

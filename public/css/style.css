@@ -26,12 +26,12 @@
 
 } */
 
-.posters{
+/* .posters{
     background-color: #ffffff;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-}
+} */
 /* .filmes-cartaz img{
     width: 145px;
     height: 209px;
@@ -47,7 +47,7 @@
 /* .horarios-style{
     margin-left: 24px;
 } */
-
+/* 
 .dia{
     font-size: 20px;
     margin-bottom: 22px;
@@ -64,16 +64,16 @@
     border-radius: 3px;
     border: none;
     color: #ffffff
-}
+} */
 /* assentos */
-.lugares{
+/* .lugares{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin-left: 24px;
     margin-right: 17px;
-}
-
+} */
+/* 
 .bolinha{
     height: 26px;
     width: 26px;
@@ -116,9 +116,9 @@
     flex-direction: column;
     font-size: 18px;
     margin: 42px 24px
-}
+} */
 
-input{
+/* input{
     height: 51px;
     margin-bottom: 7px;
 }
@@ -134,17 +134,17 @@ input{
     margin-top: 20px;
     color: white;
     font-size: 20px;
-}
+} */
 
 
 /* sucesso */
-.sucesso{
+/* .sucesso{
     color: #247A6B;
     font-weight: 700;
     display: flex;
     flex-wrap: wrap;
-}
-.conf-filme, .conf-ingresso, .conf-comprador{
+} */
+/* .conf-filme, .conf-ingresso, .conf-comprador{
     margin: 25px 0px 50px 28px;
 }
 
@@ -157,15 +157,15 @@ input{
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 12px;
-}
+} */
 
-.conf-info{
+/* .conf-info{
     font-size: 22px;
     font-weight: 400;
-}
+} */
 
 /* FOOTER */
-.footer{
+/* .footer{
     position: relative;
     bottom: 0px;
     height: 117px;
@@ -189,4 +189,4 @@ input{
 .footer-infos{
     margin-left: 14px;
     font-size: 26px;
-}
+} */

@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react"
 import styled from 'styled-components';
 import axios from "axios";
+import Footer from "./Footer";
 
 export default function Horario() {
     const { filmeId } = useParams();
@@ -25,10 +26,10 @@ export default function Horario() {
             <nav>
                 <TituloPagina>Selecione o horário</TituloPagina>
                 <HorariosStyle>
-                    {dias.map(dia => <><p className="dia">{dia.weekday}</p><div className="botoes">
-                    <Link to={`/sessao/${dia.showtimes[0].id}`}><button className="botao-hora">{dia.showtimes[0].name}</button></Link>
-                    <Link to={`/sessao/${dia.showtimes[1].id}`}><button className="botao-hora">{dia.showtimes[1].name}</button></Link>
-                    </div></>)}
+                    {dias.map(dia => <><Dia>{dia.weekday}</Dia><Botoes>
+                    <Link to={`/sessao/${dia.showtimes[0].id}`}><BotaoHora>{dia.showtimes[0].name}</BotaoHora></Link>
+                    <Link to={`/sessao/${dia.showtimes[1].id}`}><BotaoHora>{dia.showtimes[1].name}</BotaoHora></Link>
+                    </Botoes></>)}
                 </HorariosStyle>
             </nav>
             <Footer imagem={horario.posterURL} titulo={horario.title}/>
@@ -38,24 +39,10 @@ export default function Horario() {
 }
 
 
-function Footer(props){
-    return(
-        <>
-            <footer className="footer">
-                <div className="footer-img">
-                    <img src={props.imagem}></img>
-                </div>
-                <div className="footer-infos">
-                    <p>{props.titulo}</p>
-                </div>
-            </footer>
-        </>
-    )
-}
-
 const TituloPagina = styled.p`
+    margin-top: 68px;
     height: 110px;
-    width: 100%;
+    width: 100vw;
     font-size: 24px;
     display:flex;
     align-items: center;
@@ -64,5 +51,25 @@ const TituloPagina = styled.p`
     color: #293845;
 `
 const HorariosStyle = styled.div`
+margin-bottom: 128px;
     margin-left: 24px;
+`
+
+const Dia = styled.p`
+    font-size: 20px;
+    margin-bottom: 22px;
+`
+
+const Botoes = styled.div`
+    font-size: 18px;
+    margin-bottom: 22px;
+`
+const BotaoHora = styled.button`
+    width: 83px;
+    height: 43px;
+    margin-right: 8px;
+    background-color: #E8833A;
+    border-radius: 3px;
+    border: none;
+    color: #ffffff
 `
